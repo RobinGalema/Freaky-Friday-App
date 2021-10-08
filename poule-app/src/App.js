@@ -12,17 +12,19 @@ function App() {
       <AppHeader name="Robin"/>
       <Router>
         <nav>
+          <div className="container">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/poules">Poules</Link>
             </li>
             <li>
-              <Link to="/poules">Poules</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/profile">Profile</Link>
             </li>
           </ul>
+          </div>
         </nav>
         <Switch>
           <Route path="/poules">

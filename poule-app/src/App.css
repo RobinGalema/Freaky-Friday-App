@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Oxygen:wght@300;400;700&display=swap');
+
+/* Variables */
+:root{
+    --main-bg-color: #082032;
+    --second-bg-color: #2C394B;
+    --thrid-bg-color: #334756;
+    --acccent-color-a: #FF4C29;
+    --main-text-color: #EEEEEE;
+}
+
+/* Default text styling */
+h1, h2, h3, h4{
+    font-family: 'Oxygen', sans-serif;
+    color: var(--main-text-color);    
+}
+
+h5, h6, p, a, li, span {
+    font-family: 'Cantarell', sans-serif;
+    color: var(--main-text-color);
+}
+
+a{
+    text-decoration: none;
+}
+
+a:visited{
+    color: white;
+}
+
+/* General styling setup */
+body, body > *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: var(--main-bg-color);
+}
+
+/* Navigation */
+nav{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    background: var(--second-bg-color);
+}
+
+nav .container{
+    padding: 5px 15px;
+}
+
+nav .container ul{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+}
+
+nav .container ul li{
+    text-align: center;
+    color: white;
+}
