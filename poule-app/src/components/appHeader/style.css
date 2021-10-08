@@ -1,0 +1,8 @@
+header{
+    background: var(--third-bg-color);
+    text-align: center;
+}
+
+header h1{
+    margin: 10px 0px;
+}
