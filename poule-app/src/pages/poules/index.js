@@ -1,5 +1,3 @@
-import react from "react";
-
 function Poules(){
     return(
         <div className="page-content page-poules">

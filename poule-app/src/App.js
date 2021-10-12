@@ -4,7 +4,7 @@ import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faUsers } from '@fortawesome/free-solid-svg-icons'
 import AppHeader from './components/appHeader';
-import Home from './pages/home';
+import Overview from './pages/overview';
 import Poules from './pages/poules';
 import Profile from './pages/profile';
 
@@ -20,7 +20,7 @@ function App() {
               <Link to="/poules"><FontAwesomeIcon icon={ faUsers } />Poules</Link>
             </li>
             <li>
-              <Link to="/"> <FontAwesomeIcon icon={ faHome } />Home</Link>
+              <Link to="/overview"> <FontAwesomeIcon icon={ faHome } />Home</Link>
             </li>
             <li>
               <Link to="/profile"><FontAwesomeIcon icon={ faUser } />Profile</Link>
@@ -36,8 +36,11 @@ function App() {
           <Route path="/profile">
             <Profile />
           </Route>
+          <Route path="/overview">
+            <Overview />
+          </Route>
           <Route path="/">
-            <Home />
+            <h2>Login will be here</h2>
           </Route>
         </Switch>
         </div>
