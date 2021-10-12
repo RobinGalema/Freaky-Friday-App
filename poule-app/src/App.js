@@ -4,6 +4,7 @@ import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faUsers } from '@fortawesome/free-solid-svg-icons'
 import AppHeader from './components/appHeader';
+import LoginForm from './components/loginForm';
 import Overview from './pages/overview';
 import Poules from './pages/poules';
 import Profile from './pages/profile';
@@ -40,7 +41,7 @@ function App() {
             <Overview />
           </Route>
           <Route path="/">
-            <h2>Login will be here</h2>
+            <LoginForm />
           </Route>
         </Switch>
         </div>
