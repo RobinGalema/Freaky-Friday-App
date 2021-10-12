@@ -1,5 +1,6 @@
 import react from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faUsers } from '@fortawesome/free-solid-svg-icons'
@@ -9,14 +10,16 @@ import Overview from './pages/overview';
 import Poules from './pages/poules';
 import Profile from './pages/profile';
 
+
 function App() {
 
   const handleLogin = (userName) => {
     if (!userName){
       alert('Provide a username');
-      return;
+      return false;
     }
-    alert(`The username was ${userName}`);
+    console.log(`The username was ${userName}`);
+    return true;
 
     // Check for username in DB
 }
