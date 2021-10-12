@@ -10,6 +10,17 @@ import Poules from './pages/poules';
 import Profile from './pages/profile';
 
 function App() {
+
+  const handleLogin = (userName) => {
+    if (!userName){
+      alert('Provide a username');
+      return;
+    }
+    alert(`The username was ${userName}`);
+
+    // Check for username in DB
+}
+
   return (
     <div className="App">
       <AppHeader name="Robin"/>
@@ -41,7 +52,7 @@ function App() {
             <Overview />
           </Route>
           <Route path="/">
-            <LoginForm />
+            <LoginForm onSubmit={handleLogin}/>
           </Route>
         </Switch>
         </div>

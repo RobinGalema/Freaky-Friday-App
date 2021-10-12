@@ -1,18 +1,12 @@
 import { useState } from "react";
 import reactDom from "react-dom";
 
-const LoginForm = (props) => {
+const LoginForm = ({onSubmit}) => {
 
     const [name, setName] = useState("");
 
-    const handleSubmit = () => {
-        alert(`The username was ${name}`);
-    
-        // Check for username in DB
-    }
-
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={() => onSubmit(name)}>
             <label htmlFor="userName">
                 User Name:
                 <input type="text" name="userName" id="userName" value={name} onChange={(e) => setName(e.target.value)} />
