@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
+import './style.css';
 import reactDom from "react-dom";
 
 const LoginForm = ({onSubmit}) => {
@@ -20,7 +21,7 @@ const LoginForm = ({onSubmit}) => {
     }
 
     return(
-        <form onSubmit={submitForm}>
+        <form className="login-form" onSubmit={submitForm}>
             <label htmlFor="userName">
                 User Name:
             </label>
