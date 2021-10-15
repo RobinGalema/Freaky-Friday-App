@@ -14,13 +14,12 @@ import Profile from './pages/profile';
 const checkUserName = (userName) => {
   let userExists = false;
 
-  userData.users.map( (user) => {
+  userData.users.forEach(user => {
     if (!userExists && user.userName === userName) {
       userExists = true;
     }
   });
-
-  return userExists
+  return userExists;
 }
 
 function App() {
@@ -45,10 +44,10 @@ function App() {
 
   return (
     <div className="App">
-      <AppHeader name={currentUser}/>
+        <AppHeader name={currentUser}/>
       <Router>
         <div className="content container">
-          <Navigation />
+          <Navigation isLoggedIn={loggedIn}/>
         <Switch>
           <Route path="/poules">
             <Poules />
