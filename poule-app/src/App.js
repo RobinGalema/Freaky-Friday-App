@@ -40,7 +40,7 @@ function App() {
     else {
       alert('This username does not exist!');
     }
-}
+  }
 
   return (
     <div className="App">
@@ -50,13 +50,13 @@ function App() {
           <Navigation isLoggedIn={loggedIn}/>
         <Switch>
           <Route path="/poules">
-            <Poules />
+            <Poules isLoggedIn={loggedIn} user={currentUser}/>
           </Route>
           <Route path="/profile">
-            <Profile />
+            <Profile isLoggedIn={loggedIn} user={currentUser}/>
           </Route>
           <Route path="/overview">
-            <Overview />
+            <Overview isLoggedIn={loggedIn} user={currentUser}/>
           </Route>
           <Route path="/">
             <LoginForm onSubmit={handleLogin}/>
