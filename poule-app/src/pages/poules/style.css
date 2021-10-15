@@ -1,0 +1,17 @@
+.poule-card{
+    height: max-content;
+    background-color: var(--second-bg-color);
+    padding: 15px;
+    margin: 15px 0px;
+    border-radius: 10px;
+}
+
+.poule-card h4,p{
+    margin: 0;
+    text-align: left;
+}
+
+.poule-card p{
+    color: var(--acccent-color-a);
+    margin-top: 5px;
+}

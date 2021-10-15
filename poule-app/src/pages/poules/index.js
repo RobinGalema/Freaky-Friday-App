@@ -1,6 +1,8 @@
 import { useHistory } from "react-router";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import userData from ".././../data/users.json"
+import userData from ".././../data/users.json";
+import pouleData from '../../data/poules.json';
+import './style.css';
 
 const PouleOverview = (props) => {
 
@@ -8,8 +10,16 @@ const PouleOverview = (props) => {
     console.log(theUser);
     
     let element = theUser[0].poules.map( poule => {
+        let thisPoule = pouleData.poules.filter(the_poule => the_poule.id === poule.id)
+        console.log(thisPoule);
+
         return (
-            <Link key={poule.id} to={`poule/${poule.id}`}>Go to poule</Link>
+            <div className='poule-card' key={poule.id}>
+                <Link to={`poule/${poule.id}`}>
+                    <h4>{thisPoule[0].name}</h4>
+                    <p>Go to poule</p>
+                </Link>
+            </div>
         );
     })
 
