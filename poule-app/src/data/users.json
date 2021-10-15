@@ -4,6 +4,12 @@
             "id" : 0,
             "userName" : "Robin",
             "poules" : [
+                {
+                    "id" : 0
+                },
+                {
+                    "id": 2
+                }
                 
             ],
             "settings" : [

@@ -1,12 +1,19 @@
 import { useHistory } from "react-router";
-import pouleData from ".././../data/poules.json"
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import userData from ".././../data/users.json"
 
 const PouleOverview = (props) => {
-    let value = pouleData.poules.map( poule => {
-        return (<p>test {poule.id} | {props.user} </p>);
-    });
 
-    return value;
+    let theUser = userData.users.filter(user => user.userName === props.user)
+    console.log(theUser);
+    
+    let element = theUser[0].poules.map( poule => {
+        return (
+            <Link key={poule.id} to={`poule/${poule.id}`}>Go to poule</Link>
+        );
+    })
+
+    return element;
 }
 
 function Poules(props){

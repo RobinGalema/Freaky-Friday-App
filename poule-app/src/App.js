@@ -9,6 +9,7 @@ import LoginForm from './components/loginForm';
 import Navigation from './components/Navigation';
 import Overview from './pages/overview';
 import Poules from './pages/poules';
+import Poule from './pages/poule'
 import Profile from './pages/profile';
 
 const checkUserName = (userName) => {
@@ -58,6 +59,7 @@ function App() {
           <Route path="/overview">
             <Overview isLoggedIn={loggedIn} user={currentUser}/>
           </Route>
+          <Route path="/poule/:id" exact component={Poule}/> 
           <Route path="/">
             <LoginForm onSubmit={handleLogin}/>
           </Route>
