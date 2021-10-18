@@ -12,35 +12,36 @@ import Poules from './pages/poules';
 import Poule from './pages/poule'
 import Profile from './pages/profile';
 
-const checkUserName = (userName) => {
-  let userExists = false;
+const checkUserName = async (userName) => {
+  let loginValid;
 
-  userData.users.forEach(user => {
-    if (!userExists && user.userName === userName) {
-      userExists = true;
-    }
-  });
-  return userExists;
+  loginValid = await fetch(`/login?userName=${userName}`)
+                .then((res) => res.json())
+                .then((data) => {return data.succes});
+
+            
+  console.log(loginValid);
+  return loginValid;
 }
 
 function App() {
   let [loggedIn, setLoggedIn] = new useState(false);
   let [currentUser, setCurrentUser] = new useState('');
   const [data, setData] = React.useState(null);
-
+  
   React.useEffect(() => {
-    fetch("/api")
+    fetch(`/api`)
       .then((res) => res.json())
       .then((data) => setData(data.message));
-  }, []);
+  });
 
-  const handleLogin = (userName) => {
+  const handleLogin = async (userName) => {
     if (!userName){ // Check if a username is provided
       alert('Provide a username');
       return false;
     }
 
-    if (checkUserName(userName)){ // Check if the user exists
+    if (await checkUserName(userName)){ // Check if the user exists
       setLoggedIn(true);
       setCurrentUser(userName);
       return true;
