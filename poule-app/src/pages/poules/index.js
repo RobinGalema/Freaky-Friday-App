@@ -1,10 +1,17 @@
 import { useHistory } from "react-router";
+import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import userData from ".././../data/users.json";
 import pouleData from '../../data/poules.json';
 import './style.css';
+import FullButton from "../../components/FullButton";
+import NewPoule from "../../components/NewPoule";
+import { render } from "react-dom";
 
 const PouleOverview = (props) => {
+
+    // Prevent error if the user is not logged in.
+    if (!props.user) return (<p>Not logged in</p>);
 
     let theUser = userData.users.filter(user => user.userName === props.user)
     console.log(theUser);
@@ -27,6 +34,17 @@ const PouleOverview = (props) => {
 }
 
 function Poules(props){
+    const [showPopUp, setShowPopUp] = new useState(false);
+
+    const newPoule = () => {
+        console.log('Create new poule');
+        setShowPopUp(true);
+    }
+
+    const createPoule = (pouleName) => {
+        console.log(pouleName);
+        setShowPopUp(false);
+    }
 
     // Check if a user is logged in
     const history = useHistory();
@@ -36,8 +54,10 @@ function Poules(props){
         <div className="page-content page-poules">
             <h2>This is the poules page</h2>
 
-            <div className="poules-container">
+            <div className="poules-container">  
                 <PouleOverview user={props.user}/>
+                <FullButton onclick={newPoule} text="Create new poule"/>
+                {showPopUp && (<NewPoule onSubmit={createPoule}/>)}
             </div>
         </div>
     );

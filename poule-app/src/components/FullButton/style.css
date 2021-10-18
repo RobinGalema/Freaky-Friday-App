@@ -1,0 +1,10 @@
+button.full-btn{
+    width: 100%;
+    background: var(--acccent-color-a);
+    font-family: 'Cantarell', sans-serif;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 0px;
+    border: none;
+    font-size: 18px;
+}
