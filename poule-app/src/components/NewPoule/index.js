@@ -5,7 +5,7 @@ import './style.css';
 const NewPoule = (props) => {
     const [pouleName, setPouleName] = new useState('');
 
-    const submitForm = (e) => {
+    const submitPouleForm = (e) => {
         e.preventDefault();
 
         props.onSubmit(pouleName);
@@ -16,7 +16,7 @@ const NewPoule = (props) => {
             <div className="container">
                 <h4>Create new poule</h4>
                 <div className="content-container">
-                    <form onSubmit={submitForm}>
+                    <form onSubmit={submitPouleForm}>
                         <label htmlFor=''>Give your poule a name</label>
                         <input type='text' name='pouleName' id='pouleName' value={pouleName} onChange={(e) => {setPouleName(e.target.value)}}/>
                         <input type='submit' value='Create Poule'/>

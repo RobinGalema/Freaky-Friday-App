@@ -25,6 +25,11 @@ a{
     text-decoration: none;
 }
 
+input{
+    /* Safari input styling fix */
+    -webkit-appearance: none;
+}
+
 i.fas{
     font-family: "Font Awesome 5 Free";
     font-weight: 900;

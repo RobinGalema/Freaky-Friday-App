@@ -15,16 +15,18 @@ form.login-form input{
 form.login-form input[type="text"]{
     background: var(--second-bg-color);
     border: none;
-    padding: 7.5px;
+    padding: 10px;
     margin: 5px 0px 10px;
     border-radius: 10px;
+    font-size: 16px;
 }
 
 form.login-form input[type="submit"]{
     background: var(--acccent-color-a);
     border: none;
-    padding: 7.5px;
+    padding: 10px 0px;
     border-radius: 10px;
+    font-size: 16px;
 }
 
 form.login-form input[type="submit"]:hover{

@@ -14,11 +14,9 @@ const PouleOverview = (props) => {
     if (!props.user) return (<p>Not logged in</p>);
 
     let theUser = userData.users.filter(user => user.userName === props.user)
-    console.log(theUser);
     
     let element = theUser[0].poules.map( poule => {
         let thisPoule = pouleData.poules.filter(the_poule => the_poule.id === poule.id)
-        console.log(thisPoule);
 
         return (
             <div className='poule-card' key={poule.id}>
