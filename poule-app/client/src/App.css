@@ -98,3 +98,17 @@ nav .container ul li a svg{
 .page-content{
     text-align: center;
 }
+
+.server-msg{
+    width: 100%;
+}
+
+.server-msg p{
+    display: block;
+    margin: auto;
+    text-align: center;
+    color: var(--acccent-color-a);
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 400;
+}

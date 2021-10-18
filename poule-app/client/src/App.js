@@ -1,4 +1,4 @@
-import react, { createContext } from 'react';
+import React, { createContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useState } from "react";
@@ -26,6 +26,13 @@ const checkUserName = (userName) => {
 function App() {
   let [loggedIn, setLoggedIn] = new useState(false);
   let [currentUser, setCurrentUser] = new useState('');
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch("/api")
+      .then((res) => res.json())
+      .then((data) => setData(data.message));
+  }, []);
 
   const handleLogin = (userName) => {
     if (!userName){ // Check if a username is provided
@@ -62,6 +69,9 @@ function App() {
           <Route path="/poule/:id" exact component={Poule}/> 
           <Route path="/">
             <LoginForm onSubmit={handleLogin}/>
+            <div className='server-msg'>
+              <p>{!data ? "Loading..." : data}</p>
+            </div>
           </Route>
         </Switch>
         </div>
