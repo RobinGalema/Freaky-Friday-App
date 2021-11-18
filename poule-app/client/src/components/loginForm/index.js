@@ -9,9 +9,9 @@ const LoginForm = ({onSubmit}) => {
     const history = useHistory();
     const handleNav = () => history.push('/overview');
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault();
-        checkRouting(onSubmit(name));
+        checkRouting(await onSubmit(name));
     }
 
     const checkRouting = (loginSucces) => {
