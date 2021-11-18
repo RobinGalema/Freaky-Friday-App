@@ -16,13 +16,18 @@ h1, h2, h3, h4{
     color: var(--main-text-color);    
 }
 
-h5, h6, p, a, li, span {
+h5, h6, p, a, li, span, label, input {
     font-family: 'Cantarell', sans-serif;
     color: var(--main-text-color);
 }
 
 a{
     text-decoration: none;
+}
+
+input{
+    /* Safari input styling fix */
+    -webkit-appearance: none;
 }
 
 i.fas{
@@ -92,4 +97,18 @@ nav .container ul li a svg{
 /* Page content container */
 .page-content{
     text-align: center;
+}
+
+.server-msg{
+    width: 100%;
+}
+
+.server-msg p{
+    display: block;
+    margin: auto;
+    text-align: center;
+    color: var(--acccent-color-a);
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 400;
 }

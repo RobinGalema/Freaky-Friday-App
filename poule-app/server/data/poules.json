@@ -1,0 +1,19 @@
+{
+    "poules" : [
+        {   
+            "id": 0,
+            "name" : "My awesome poule",
+            "members" : ["Robin"]
+        },
+        {
+            "id": 1,
+            "name" : "Poule of friends",
+            "members" : ["Niek"]
+        },
+        {
+            "id": 2,
+            "name" : "Car Poule",
+            "members" : ["Robin"]
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+form.login-form{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+    padding: 0 15px;
+}
+
+form.login-form input{
+    width: 100%;
+    flex-basis: 1;
+}
+
+form.login-form input[type="text"]{
+    background: var(--second-bg-color);
+    border: none;
+    padding: 10px;
+    margin: 5px 0px 10px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+form.login-form input[type="submit"]{
+    background: var(--acccent-color-a);
+    border: none;
+    padding: 10px 0px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+form.login-form input[type="submit"]:hover{
+    cursor: pointer;
+}
+
+form.login-form label{
+    flex-basis: 1;
+    width: 100%;
+    text-align: left;
+}
