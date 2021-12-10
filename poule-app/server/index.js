@@ -1,7 +1,7 @@
 const url = require('url');
 const express = require("express");
 const fs = require('fs');
-const { response } = require('express');
+const { response, json } = require('express');
 const path = require('path');
 
 const PORT = process.env.PORT || 3001;
@@ -50,6 +50,51 @@ app.get("/login", async (req, res) => {
     }else{
         res.status(400);
         res.json({status: 400, message: 'No username provided'});
+    }
+})
+
+// Request poules
+app.get("/api/poules", async (req, res) => {
+    console.log("=====> Starting REQ <=====")
+    console.log("[API - POULES]", "New Request @ ", new Date().toTimeString())
+    const queryObject = url.parse(req.url,true).query;
+    const userName = queryObject.userName;
+    const loggedIn = queryObject.loggedIn;
+
+    if (userName && loggedIn === "true"){
+        let pouleIds;
+
+        fs.readFile(path.resolve(__dirname, "./data/users.json"),'utf8', async (err, data) => {
+            if (err) return undefined;
+
+            const users = await JSON.parse(data).users;
+
+            const loggedInUser = await users.find(o => o.userName === userName);
+            pouleIds = loggedInUser.poules;
+
+            fs.readFile(path.resolve(__dirname, "./data/poules.json"),'utf8', async (err, data) => {
+                if (err) return undefined;
+    
+                const poules = await JSON.parse(data).poules;
+                let filteredPoules = [];
+    
+                await pouleIds.forEach(pouleId => {
+                    filteredPoules.push(poules.find(o => o.id === pouleId));
+                })
+    
+                console.log("[API - POULES]", "GET succesfull, sending data", filteredPoules)
+                res.status(200);
+                res.json({status: 200, message:"Succes", data: filteredPoules});
+            });
+        });
+    }
+    else if (loggedIn != "true"){
+        res.status(401);
+        res.json({status: 401, message: 'Unauthorized'})
+    }
+    else {
+        res.status(400)
+        res.json({status: 400, message: 'Bad Request'})
     }
 })
   

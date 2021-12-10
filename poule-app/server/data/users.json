@@ -3,30 +3,17 @@
        {
           "id":0,
           "userName":"Robin",
-          "poules":[
-             {
-                "id":0
-             },
-             {
-                "id":2
-             }
-          ]
+          "poules":[0,2]
        },
        {
           "id":1,
           "userName":"Niek",
-          "poules":[
-             {
-                "id":1
-             }
-          ]
+          "poules":[0,1]
        },
        {
           "id":2,
           "userName":"Jeroen",
-          "poules":[
-             
-          ]
+          "poules":[1,2]
        }
     ]
  }

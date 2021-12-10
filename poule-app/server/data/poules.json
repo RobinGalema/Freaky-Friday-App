@@ -3,17 +3,17 @@
         {   
             "id": 0,
             "name" : "My awesome poule",
-            "members" : ["Robin"]
+            "members" : ["Robin", "Niek"]
         },
         {
             "id": 1,
             "name" : "Poule of friends",
-            "members" : ["Niek"]
+            "members" : ["Niek", "Jeroen"]
         },
         {
             "id": 2,
             "name" : "Car Poule",
-            "members" : ["Robin"]
+            "members" : ["Robin", "Jeroen"]
         }
     ]
 }
