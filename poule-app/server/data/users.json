@@ -10,9 +10,6 @@
              {
                 "id":2
              }
-          ],
-          "settings":[
-             
           ]
        },
        {
@@ -22,18 +19,12 @@
              {
                 "id":1
              }
-          ],
-          "settings":[
-             
           ]
        },
        {
           "id":2,
           "userName":"Jeroen",
           "poules":[
-             
-          ],
-          "settings":[
              
           ]
        }

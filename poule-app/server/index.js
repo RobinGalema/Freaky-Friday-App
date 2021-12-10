@@ -8,10 +8,13 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+// Api conncection
 app.get("/api", (req, res) => {
-    res.json({ message: `Server authenticated!` });
+    res.status(200);
+    res.json({ status: 200, message: `Server authenticated!` });
 });
 
+// Login
 app.get("/login", async (req, res) => {
     const queryObject = url.parse(req.url,true).query;
     const userName = queryObject.userName;
@@ -24,20 +27,30 @@ app.get("/login", async (req, res) => {
             
             if (err) response = err;
     
-            userData = JSON.parse(data);
+            const jsonData = JSON.parse(data);
 
-            await userData.users.forEach(user => {
+            // Get the user's data
+            await jsonData.users.forEach(user => {
                 if(user.userName === userName){
                     loginFound = true;
+                    userData = user;
                 }
             });
             
-            res.json({code: 200, message: 'Login Attempted', data: userData, succes: loginFound});
+            // check if the login is valid
+            if (loginFound){
+                res.status(200); // OK
+                res.json({status: 200, message: 'Login Attempted', data: userData});
+            }
+            else{
+                res.status(401); // UNAUTORIZED
+                res.json({status: 401, message:'Login credentials are invalid'})
+            }
         });
     }else{
-        res.json({code: 400, message: 'No username provided'});
+        res.status(400);
+        res.json({status: 400, message: 'No username provided'});
     }
-
 })
   
 app.listen(PORT, () => {

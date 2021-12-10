@@ -17,7 +17,7 @@ const checkUserName = async (userName) => {
 
   loginValid = await fetch(`/login?userName=${userName}`)
                 .then((res) => res.json())
-                .then((data) => {return data.succes});
+                .then((data) => {return (data.status === 200)});
 
             
   console.log(loginValid);
