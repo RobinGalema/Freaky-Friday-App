@@ -60,6 +60,7 @@ app.get("/api/poules", async (req, res) => {
     const queryObject = url.parse(req.url,true).query;
     const userName = queryObject.userName;
     const loggedIn = queryObject.loggedIn;
+    const specficPoule = queryObject.pouleId;
 
     if (userName && loggedIn === "true"){
         let pouleIds;
@@ -76,15 +77,35 @@ app.get("/api/poules", async (req, res) => {
                 if (err) return undefined;
     
                 const poules = await JSON.parse(data).poules;
-                let filteredPoules = [];
+                let result;
+
+                if (specficPoule != undefined){
+                    console.log("specific poule requested");
+                    result = await poules.find(o => o.id === parseInt(specficPoule));
+
+                    // Send a response
+                    if (result === undefined){
+                        res.status(404);
+                        res.json({status: 404, message: "This poule does not exist"});
+                    }
+                    else{
+                        console.log("[API - POULES]", "GET succesfull, sending data", result)
+                        res.status(200);
+                        res.json({status: 200, message:"Succes", data: result});
+                    }
+                }
+                else {
+                    let result = [];
     
-                await pouleIds.forEach(pouleId => {
-                    filteredPoules.push(poules.find(o => o.id === pouleId));
-                })
-    
-                console.log("[API - POULES]", "GET succesfull, sending data", filteredPoules)
-                res.status(200);
-                res.json({status: 200, message:"Succes", data: filteredPoules});
+                    await pouleIds.forEach(pouleId => {
+                        result.push(poules.find(o => o.id === pouleId));
+                    })
+                    
+                    // Send a response
+                    console.log("[API - POULES]", "GET succesfull, sending data", result)
+                    res.status(200);
+                    res.json({status: 200, message:"Succes", data: result});
+                }
             });
         });
     }
@@ -96,7 +117,9 @@ app.get("/api/poules", async (req, res) => {
         res.status(400)
         res.json({status: 400, message: 'Bad Request'})
     }
+    console.log("====> Ending REQ <====");
 })
+
   
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

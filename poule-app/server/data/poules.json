@@ -3,7 +3,26 @@
         {   
             "id": 0,
             "name" : "My awesome poule",
-            "members" : ["Robin", "Niek"]
+            "members" : ["Robin", "Niek"],
+            "races" : [
+                {
+                    "id" : 0,
+                    "name" : "Bahrain Grand Prix",
+                    "completed" : "False",
+                    "submissions" : [
+                        {
+                            "member" :  "Robin",
+                            "submitted" : true,
+                            "submission" : ["VER", "HAM", "BOT", "PER", "NOR", "RIC", "SAI", "ALO", "LEC", "OCO", "RUS", "GAS", "TSU", "GIO", "RAI", "LAT", "MSC", "MAZ"]
+                        },
+                        {
+                            "member" :  "Niek",
+                            "submitted" : true,
+                            "submission" : ["VER", "HAM", "BOT", "PER", "NOR", "RIC", "SAI", "ALO", "LEC", "OCO", "RUS", "GAS", "TSU", "GIO", "RAI", "LAT", "MSC", "MAZ"]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "id": 1,
