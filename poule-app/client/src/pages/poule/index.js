@@ -1,11 +1,19 @@
+import PouleOverview from "../../components/PouleOverview";
+import { useHistory } from "react-router-dom";
+import AuthObject from "../../services/loginObject";
+
 const Poule = (props) => {
     // Get the current poule
     const {id} = props.match.params
 
+    const history = useHistory();
+    if (!AuthObject.loggedIn) history.push('/');
+
     return(
         <div className="container">
-            <h2>This is the single poule page</h2>
-            <p>This is poule ID: {id}</p>
+            <div className="poule-overview">
+                <PouleOverview pouleId={id}/>
+            </div>
         </div>
     );
 }

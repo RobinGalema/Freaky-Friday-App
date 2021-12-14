@@ -70,8 +70,7 @@ app.get("/api/poules", async (req, res) => {
 
             const users = await JSON.parse(data).users;
 
-            const loggedInUser = await users.find(o => o.userName === userName);
-            pouleIds = loggedInUser.poules;
+            pouleIds = await users.find(o => o.userName === userName).poules;
 
             fs.readFile(path.resolve(__dirname, "./data/poules.json"),'utf8', async (err, data) => {
                 if (err) return undefined;
@@ -90,6 +89,7 @@ app.get("/api/poules", async (req, res) => {
                     }
                     else{
                         console.log("[API - POULES]", "GET succesfull, sending data", result)
+                        console.log("====> Ending REQ <====");
                         res.status(200);
                         res.json({status: 200, message:"Succes", data: result});
                     }
@@ -103,6 +103,7 @@ app.get("/api/poules", async (req, res) => {
                     
                     // Send a response
                     console.log("[API - POULES]", "GET succesfull, sending data", result)
+                    console.log("====> Ending REQ <====");
                     res.status(200);
                     res.json({status: 200, message:"Succes", data: result});
                 }
@@ -117,7 +118,6 @@ app.get("/api/poules", async (req, res) => {
         res.status(400)
         res.json({status: 400, message: 'Bad Request'})
     }
-    console.log("====> Ending REQ <====");
 })
 
   
