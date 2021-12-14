@@ -7,6 +7,7 @@ import './style.css';
 import FullButton from "../../components/FullButton";
 import NewPoule from "../../components/NewPoule";
 import { render } from "react-dom";
+import AuthObject from "../../services/loginObject";
 
 // Poules class
 class Poules extends React.Component{
@@ -20,7 +21,8 @@ class Poules extends React.Component{
     }
     
     componentDidMount(){
-        console.log(this.props.user);
+        //console.log(this.props.user);
+        console.log("logged in?", AuthObject.loggedIn, AuthObject.loggedInUser);
 
         fetch(`/api/poules?userName=${this.props.user}&loggedIn=true`)
             .then((res) => res.json())

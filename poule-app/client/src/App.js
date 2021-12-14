@@ -11,6 +11,7 @@ import Overview from './pages/overview';
 import Poules from './pages/poules';
 import Poule from './pages/poule'
 import Profile from './pages/profile';
+import AuthObject from './services/loginObject';
 
 const checkUserName = async (userName) => {
   let loginValid;
@@ -43,6 +44,8 @@ function App() {
     if (await checkUserName(userName)){ // Check if the user exists
       setLoggedIn(true);
       setCurrentUser(userName);
+      AuthObject.loggedIn = true;
+      AuthObject.loggedInUser = userName;
       return true;
     }
     else {
