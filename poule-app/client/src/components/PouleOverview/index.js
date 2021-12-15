@@ -1,6 +1,7 @@
 import React from "react";
 import './style.scss';
 import AuthObject from "../../services/loginObject";
+import { Link } from "react-router-dom";
 
 class PouleOverview extends React.Component{
     pouleId;
@@ -42,8 +43,10 @@ class PouleOverview extends React.Component{
                 <div className="races">
                     <ul>
                         {data.map(race => (
-                            <li>
-                              {race.raceName}  
+                            <li key={race.round}>
+                            <Link to={`/poule/${this.pouleId}/${race.round}`}>
+                              {race.raceName}
+                            </Link>  
                             </li>
                         ))}
                     </ul>

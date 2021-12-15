@@ -12,6 +12,8 @@ import Poules from './pages/poules';
 import Poule from './pages/poule'
 import Profile from './pages/profile';
 import AuthObject from './services/loginObject';
+import Race from './pages/race';
+import NotFound from './pages/NotFound';
 
 const checkUserName = async (userName) => {
   let loginValid;
@@ -69,13 +71,15 @@ function App() {
           <Route path="/overview">
             <Overview isLoggedIn={loggedIn} user={currentUser}/>
           </Route>
-          <Route path="/poule/:id" exact component={Poule}/> 
+          <Route path="/poule/:id" exact component={Poule}/>
+          <Route path="/poule/:id/:raceId" exact component={Race}  />
           <Route path="/">
             <LoginForm onSubmit={handleLogin}/>
             <div className='server-msg'>
               <p>{!data ? "Loading..." : data}</p>
             </div>
           </Route>
+          <Route path='*' exact component={NotFound} />
         </Switch>
         </div>
       </Router>

@@ -3,22 +3,32 @@
         {   
             "id": 0,
             "name" : "My awesome poule",
-            "members" : ["Robin", "Niek"],
+            "members" : [
+                {
+                    "name" : "Robin",
+                    "points" : 21
+                },
+                {   
+                    "name" : "Niek",
+                    "points" : 12
+                }],
             "races" : [
                 {
                     "id" : 0,
                     "name" : "Bahrain Grand Prix",
-                    "completed" : "False",
+                    "completed" : true,
                     "submissions" : [
                         {
                             "member" :  "Robin",
                             "submitted" : true,
-                            "submission" : ["VER", "HAM", "BOT", "PER", "NOR", "RIC", "SAI", "ALO", "LEC", "OCO", "RUS", "GAS", "TSU", "GIO", "RAI", "LAT", "MSC", "MAZ"]
+                            "submission" : ["VER", "HAM", "BOT", "PER", "NOR", "RIC", "SAI", "ALO", "LEC", "OCO", "RUS", "GAS", "TSU", "GIO", "RAI", "LAT", "MSC", "MAZ"],
+                            "points" : 21
                         },
                         {
                             "member" :  "Niek",
                             "submitted" : true,
-                            "submission" : ["VER", "HAM", "BOT", "PER", "NOR", "RIC", "SAI", "ALO", "LEC", "OCO", "RUS", "GAS", "TSU", "GIO", "RAI", "LAT", "MSC", "MAZ"]
+                            "submission" : ["VER", "HAM", "BOT", "PER", "NOR", "RIC", "SAI", "ALO", "LEC", "OCO", "RUS", "GAS", "TSU", "GIO", "RAI", "LAT", "MSC", "MAZ"],
+                            "points" : 21
                         }
                     ]
                 }
@@ -27,12 +37,28 @@
         {
             "id": 1,
             "name" : "Poule of friends",
-            "members" : ["Niek", "Jeroen"]
+            "members" : [
+                {
+                    "name" : "Robin",
+                    "points" : 0
+                },
+                {   
+                    "name" : "Niek",
+                    "points" : 0
+                }]
         },
         {
             "id": 2,
             "name" : "Car Poule",
-            "members" : ["Robin", "Jeroen"]
+            "members" : [
+                {
+                    "name" : "Robin",
+                    "points" : 0
+                },
+                {   
+                    "name" : "Jeroen",
+                    "points" : 0
+                }]
         }
     ]
 }
