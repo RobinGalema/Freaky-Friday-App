@@ -1,0 +1,45 @@
+.poule-wrapper{
+    margin-bottom: 100px;
+
+    button{
+        width: 100%;
+        background: var(--acccent-color-a);
+        font-family: 'Cantarell', sans-serif;
+        color: white;
+        border-radius: 10px;
+        padding: 10px 0px;
+        border: none;
+        font-size: 18px;
+        margin: 5px 0px;
+
+        &.delete-btn{
+            background: rgb(209, 35, 35);
+            margin-top: 10px;
+        }
+    }
+}
+
+.poule-inner{
+    box-sizing: border-box;
+
+    .races{
+        ul{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            list-style: none;
+            padding: 0;
+
+            li{
+                text-align: center;
+                padding: 10px;
+                background: var(--second-bg-color);
+                margin: 10px 0px;
+                border-radius: 10px;
+                font-size: 18px;
+            }
+        }
+    }
+}

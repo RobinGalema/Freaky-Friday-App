@@ -1,5 +1,5 @@
 import React from "react";
-import './style.css';
+import './style.scss';
 import AuthObject from "../../services/loginObject";
 
 class PouleOverview extends React.Component{
@@ -11,6 +11,7 @@ class PouleOverview extends React.Component{
 
         this.state = {
             loading: true,
+            racesLoading: true
         }
 
         this.pouleId = props.pouleId
@@ -26,23 +27,44 @@ class PouleOverview extends React.Component{
             this.setState({loading:false, data:json.data});
             console.log(this.state.data);
         });
+
+        fetch('http://ergast.com/api/f1/current.json')
+        .then((res) => res.json())
+        .then((json) =>{ 
+            this.setState({racesLoading: false, races: json.MRData.RaceTable.Races})
+            console.log(this.state.races) 
+        });
     }
 
     renderPoule = (data) => {
         return(
             <div className="poule-inner">
-                <h3>{data.name}</h3>
+                <div className="races">
+                    <ul>
+                        {data.map(race => (
+                            <li>
+                              {race.raceName}  
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         )
     }
 
     render(){
 
-        const {loading, data} = this.state;
+        const {loading, racesLoading, data, races} = this.state;
 
         return(
             <div className="poule-wrapper">
-                {loading ? <p>Loading Poules...</p> : this.renderPoule(data)}
+                {loading ? <p>Loading Poules...</p> : <h1>{data.name}</h1>}
+                <h2>Stadings</h2>
+                <h2>Races (2021 season)</h2>
+                {racesLoading ? <p>Loading Races...</p> : this.renderPoule(races)}
+                <h2>Settings</h2>
+                <button>Invite members</button>
+                <button className="delete-btn">Delete Poule</button>
             </div>
         )
     }
