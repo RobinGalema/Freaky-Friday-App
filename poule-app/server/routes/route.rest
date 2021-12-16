@@ -1,5 +1,5 @@
-GET http://localhost:3001/api/users
+GET http://localhost:3001/api/users/61bb02ebd23252eed945a1d9
 
 ###
 
-GET http://localhost:3001/api/users/Robin
+GET http://localhost:3001/api/users/auth/Niek
