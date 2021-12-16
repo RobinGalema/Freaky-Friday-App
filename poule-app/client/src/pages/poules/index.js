@@ -24,19 +24,19 @@ class Poules extends React.Component{
         //console.log(this.props.user);
         console.log("logged in?", AuthObject.loggedIn, AuthObject.loggedInUser);
 
-        fetch(`/api/poules?userName=${this.props.user}&loggedIn=true`)
+        fetch(`/api/poules/userpoules/${AuthObject.userId}`)
             .then((res) => res.json())
             .then((json) => this.setState({loading:false, data:json}));
     }
 
     renderOverview = (data) => {
-        console.log(data.data);
+        console.log(data);
 
         return(
             <div className="poules">
-                {data.data.map((poule) => (
+                {data.map((poule) => (
                     <div className='poule-card' key={poule.id}>
-                    <Link to={`poule/${poule.id}`}>
+                    <Link to={`poule/${poule._id}`}>
                         <h4>{poule.name}</h4>
                         <p>Go to poule</p>
                     </Link>

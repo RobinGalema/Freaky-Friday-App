@@ -31,3 +31,6 @@ app.get('/api', (req, res) => {
 // Routes
 const usersRouter = require('./routes/users');
 app.use('/api/users', usersRouter)
+
+const poulesRouter = require('./routes/poules');
+app.use('/api/poules', poulesRouter)
