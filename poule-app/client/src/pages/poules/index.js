@@ -21,10 +21,9 @@ class Poules extends React.Component{
     }
     
     componentDidMount(){
-        //console.log(this.props.user);
         console.log("logged in?", AuthObject.loggedIn, AuthObject.loggedInUser);
 
-        fetch(`/api/poules/userpoules/${AuthObject.userId}`)
+        fetch(`/api/poules/userpoules?id=${AuthObject.userId}`) 
             .then((res) => res.json())
             .then((json) => this.setState({loading:false, data:json}));
     }

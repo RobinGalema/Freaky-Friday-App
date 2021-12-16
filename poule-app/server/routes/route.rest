@@ -6,4 +6,4 @@ GET http://localhost:3001/api/users/auth/Niek
 
 ###
 
-GET http://localhost:3001/api/poules/userpoules/61bb0211d23252eed945a1d7
+GET http://localhost:3001/api/poules/userpoules?id=61bb0211d23252eed945a1d7

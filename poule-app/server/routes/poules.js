@@ -14,13 +14,14 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/userpoules/:id', async (req, res) => {
+// Getting all poules of a specific user by id
+router.get('/userpoules?:id', async (req, res) => {
     let poules;
-    let id = mongoose.Types.ObjectId(req.params.id)
+    let id = mongoose.Types.ObjectId(req.query.id)
     console.log(id);
 
     try{
-        poules = await Poule.find({members: {$elemMatch: {userId: id}}}, {name: 1, members: 1})
+        poules = await Poule.find({members: {$elemMatch: {userId: id}}}, {_id: 1, name: 1,})
 
         if (poules) {
             console.log(poules)
