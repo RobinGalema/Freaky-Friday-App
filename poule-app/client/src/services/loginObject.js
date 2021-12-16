@@ -1,6 +1,7 @@
 const AuthObject = {
     loggedIn : false,
-    loggedInUser : String | undefined
+    loggedInUser : String | undefined,
+    userId: String | undefined
 }
 
 export default AuthObject;

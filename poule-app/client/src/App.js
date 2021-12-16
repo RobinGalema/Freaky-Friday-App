@@ -2,7 +2,6 @@ import React, { createContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useState } from "react";
-import userData from "./data/users.json";
 import './App.css';
 import AppHeader from './components/appHeader';
 import LoginForm from './components/loginForm';
@@ -18,11 +17,16 @@ import NotFound from './pages/NotFound';
 const checkUserName = async (userName) => {
   let loginValid;
 
-  loginValid = await fetch(`/login?userName=${userName}`)
+  loginValid = await fetch(`http://localhost:3001/api/users/auth/${userName}`)
                 .then((res) => res.json())
-                .then((data) => {return (data.status === 200)});
-            
-  console.log(loginValid);
+                .then((json) => {
+                  return {
+                    valid: (json.userName === userName),
+                    userId: json.userId
+                  }
+                })
+
+  console.log('returning', loginValid)
   return loginValid;
 }
 
@@ -43,14 +47,19 @@ function App() {
       return false;
     }
 
-    if (await checkUserName(userName)){ // Check if the user exists
+    const loginSucces = await checkUserName(userName)
+
+    if (loginSucces.valid){ // Check if the user exists
       setLoggedIn(true);
       setCurrentUser(userName);
+
       AuthObject.loggedIn = true;
       AuthObject.loggedInUser = userName;
+      AuthObject.userId = loginSucces.userId;
+      
       return true;
     }
-    else {
+    else{
       alert('This username does not exist!');
     }
   }
@@ -63,13 +72,13 @@ function App() {
           <Navigation isLoggedIn={loggedIn}/>
         <Switch>
           <Route path="/poules">
-            <Poules isLoggedIn={loggedIn} user={currentUser}/>
+            <Poules/>
           </Route>
           <Route path="/profile">
-            <Profile isLoggedIn={loggedIn} user={currentUser}/>
+            <Profile/>
           </Route>
           <Route path="/overview">
-            <Overview isLoggedIn={loggedIn} user={currentUser}/>
+            <Overview/>
           </Route>
           <Route path="/poule/:id" exact component={Poule}/>
           <Route path="/poule/:id/:raceId" exact component={Race}  />
