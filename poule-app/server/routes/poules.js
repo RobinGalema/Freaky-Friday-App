@@ -36,4 +36,26 @@ router.get('/userpoules?:id', async (req, res) => {
     }
 })
 
+// ADD ONE
+router.post('/', async (req, res) => {
+    const body = req.body;
+
+    const poule = new Poule({
+        name: body.name,
+        members: [{
+            userId : body.user,
+            points : 0
+        }],
+        races: []
+    });
+
+    try{
+        const newPoule = await poule.save();
+        res.status(201).json({message: "Poule created succesfully", succes: true, poule: newPoule});
+    }
+    catch (err) {
+        res.status(500).json({message: err.message});
+    }
+})
+
 module.exports = router;

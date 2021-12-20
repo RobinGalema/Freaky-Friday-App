@@ -1,4 +1,4 @@
-GET http://localhost:3001/api/users/61bb02ebd23252eed945a1d9
+GET http://localhost:3001/api/users/61bb0211d23252eed945a1d7
 
 ###
 
@@ -7,3 +7,14 @@ GET http://localhost:3001/api/users/auth/Niek
 ###
 
 GET http://localhost:3001/api/poules/userpoules?id=61bb0211d23252eed945a1d7
+
+
+###
+POST http://localhost:3001/api/poules
+Content-Type: application/json
+
+{
+    "name": "My amazing poule",
+    "user": "61bb0211d23252eed945a1d7"
+}
+
