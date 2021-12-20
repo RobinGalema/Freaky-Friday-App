@@ -23,6 +23,10 @@ class Poules extends React.Component{
     componentDidMount(){
         console.log("logged in?", AuthObject.loggedIn, AuthObject.loggedInUser);
 
+        this.getPoules();
+    }
+
+    getPoules = () => {
         fetch(`/api/poules/userpoules?id=${AuthObject.userId}`) 
             .then((res) => res.json())
             .then((json) => this.setState({loading:false, data:json}));
@@ -51,8 +55,22 @@ class Poules extends React.Component{
     }
 
     createPoule = (pouleName) => {
-        console.log(pouleName);
         this.setState({showPopUp  : false});
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                name: pouleName,
+                user: AuthObject.userId
+            })
+        };
+
+        fetch(`/api/poules`, requestOptions)
+            .then(res => res.json())
+            .then(data => console.log(data))
+
+        this.getPoules();
     }
 
     render() {
