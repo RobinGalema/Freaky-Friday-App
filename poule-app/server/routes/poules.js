@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const Poule = require('../models/poule')
+const User = require('../models/user')
 
 
 // GET ALL
@@ -36,7 +37,7 @@ router.get('/userpoules?:id', async (req, res) => {
     }
 })
 
-// ADD ONE
+// Add a new poule to the database
 router.post('/', async (req, res) => {
     const body = req.body;
 
@@ -56,6 +57,39 @@ router.post('/', async (req, res) => {
     catch (err) {
         res.status(500).json({message: err.message});
     }
+})
+
+// Add a member to the poule
+router.post('/add', async (req, res) => {
+    let id;
+
+    try{
+        id = await User.findOne({name: req.body.name});
+        let updatedPoule;
+
+        if (id){
+            member = {
+                userId: id,
+                points: 0
+            }
+
+            try{
+                updatedPoule = await Poule.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.poule)}, {$push: {members: member}});
+                res.status(200).json({message: "succes", data: updatedPoule, succes: true});
+            }
+            catch(err){
+                res.status(500).json({message: err.message, succes: false});
+            }
+        }
+        else{
+            res.status(404).json({message: 'User not found', succes: false})
+        }
+    }
+    catch (err) {
+        res.status(500).json({message: err.message, succes: false});
+    }
+
+
 })
 
 module.exports = router;
