@@ -1,10 +1,11 @@
 import { useHistory } from "react-router";
+import AuthObject from "../../services/loginObject";
 
 const Overview= (props) => {
 
     // Check if a user is logged in
     const history = useHistory();
-    if (!props.isLoggedIn) history.push('/'); 
+    if (!AuthObject.loggedIn) history.push('/'); 
 
     return(
         <div className="page-content page-overview">
