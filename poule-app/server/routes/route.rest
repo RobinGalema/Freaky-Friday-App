@@ -26,3 +26,20 @@ Content-Type: application/json
     "name": "Jeroen",
     "poule" : "61c0a9a617bfa90cab27091a"
 }
+
+###
+GET http://localhost:3001/api/prediction/61bb072ed23252eed945a1db
+
+
+###
+
+
+POST http://localhost:3001/api/prediction
+Content-Type: application/json
+
+{
+    "userId": "61bb0211d23252eed945a1d7",
+    "poule": "61bb0465d23252eed945a1da",
+    "round": 2,
+    "prediction": ["VER", "HAM", "BOT", "PER", "NOR", "RIC","SAI", "ALO","LEC", "OCO", "RUS", "GAS", "TSU", "GIO", "RAI", "LAT", "MSC", "MAZ", "VET", "STR"]
+}

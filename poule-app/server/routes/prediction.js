@@ -1,0 +1,64 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const router = express.Router();
+const Poule = require('../models/poule')
+const User = require('../models/user')
+const Prediction = require('../models/prediction');
+
+// Get predictions by prediction id
+router.get('/:id', async (req, res) => {
+    try{
+        let id = mongoose.Types.ObjectId(req.params.id)
+        console.log(id);
+        const prediction = await Prediction.findOne({_id: id});
+
+        res.status(200).json({data: prediction});
+
+    }catch(err){
+        res.status(500).json({message: err.message});
+    }
+})
+
+router.post('/', async (req, res) => {
+    const body = req.body;
+
+    let poule; // The poule 
+    let predictionExists; // Does a prediction already exist for this poule
+
+    try{
+        // Check if a prediction for this round and poule already exists
+        poule = await Poule.findOne({_id: mongoose.Types.ObjectId(body.poule)}, {races: 1});
+
+        (poule.races[body.round -1]?.submission != undefined) ? predictionExists = true : predictionExists = false;
+    }
+    catch(err){
+        res.status(500).json({message: err.message, at: "Getting poule information"});
+    }
+    
+    // Do something based on the check
+    if (predictionExists){
+        // Prediction does already exist, add to this
+        
+    }
+    else{
+        // Prediction does not exist, make a new one
+        newPrediction = new Prediction({
+            _id: mongoose.Types.ObjectId(),
+            submissions : [{
+                userId : body.userId,
+                predictions: body.prediction
+            }]
+        });
+
+        try{
+            const prediction = await newPrediction.save();
+
+            res.status(200).json({message: "Prediction created succesfully", predictionId: prediction._id});
+        }
+        catch(err){
+            res.status(500).json({message: err.message, at: "Creating a new prediction"});
+        }
+    }
+})
+
+module.exports = router;
