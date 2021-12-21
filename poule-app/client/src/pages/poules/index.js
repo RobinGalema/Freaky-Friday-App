@@ -38,7 +38,7 @@ class Poules extends React.Component{
         return(
             <div className="poules">
                 {data.map((poule) => (
-                    <div className='poule-card' key={poule.id}>
+                    <div className='poule-card' key={poule.name}>
                     <Link to={`poule/${poule._id}`}>
                         <h4>{poule.name}</h4>
                         <p>Go to poule</p>
