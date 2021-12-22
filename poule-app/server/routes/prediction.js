@@ -50,13 +50,30 @@ router.post('/', async (req, res) => {
             }]
         });
 
-        try{
-            const prediction = await newPrediction.save();
+        let prediction;
 
-            res.status(200).json({message: "Prediction created succesfully", predictionId: prediction._id});
+        // Make a new prediction
+        try{
+            prediction = await newPrediction.save();
         }
         catch(err){
             res.status(500).json({message: err.message, at: "Creating a new prediction"});
+        }
+
+        // Create a new race object on the poule
+        let newRace = {
+            round: body.round,
+            name: body.name,
+            prediction: prediction._id.toString()
+        }
+
+        // Add the prediction as a new race to the array of races
+        try {
+            const updatedPoule = await Poule.findOneAndUpdate({_id: mongoose.Types.ObjectId(body.poule)}, {$push: {races: newRace}});
+            res.status(200).json({message: "Succesfully created a new prediction for the poule" , data: updatedPoule.races, success: true});
+        }
+        catch (err){
+            res.status(500).json({message: err.message, at: "Adding new prediction to poule"})
         }
     }
 })

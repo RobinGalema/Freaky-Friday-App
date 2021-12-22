@@ -40,6 +40,7 @@ Content-Type: application/json
 {
     "userId": "61bb0211d23252eed945a1d7",
     "poule": "61bb0465d23252eed945a1da",
-    "round": 2,
+    "round": 1,
+    "name": "Bahrain Grand Prix",
     "prediction": ["VER", "HAM", "BOT", "PER", "NOR", "RIC","SAI", "ALO","LEC", "OCO", "RUS", "GAS", "TSU", "GIO", "RAI", "LAT", "MSC", "MAZ", "VET", "STR"]
 }
