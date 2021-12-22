@@ -29,16 +29,17 @@ router.post('/', async (req, res) => {
         // Check if a prediction for this round and poule already exists
         poule = await Poule.findOne({_id: mongoose.Types.ObjectId(body.poule)}, {races: 1});
 
-        (poule.races[body.round -1]?.submission != undefined) ? predictionExists = true : predictionExists = false;
+        (await poule.races.find((x) => x.round === body.round) != undefined) ? predictionExists = true : predictionExists = false;
     }
     catch(err){
         res.status(500).json({message: err.message, at: "Getting poule information"});
     }
     
+    console.log(predictionExists);
     // Do something based on the check
     if (predictionExists){
         // Prediction does already exist, add to this
-        
+        res.status(200).json({message: 'This race already has a prediction, adding to this'});
     }
     else{
         // Prediction does not exist, make a new one
@@ -70,7 +71,7 @@ router.post('/', async (req, res) => {
         // Add the prediction as a new race to the array of races
         try {
             const updatedPoule = await Poule.findOneAndUpdate({_id: mongoose.Types.ObjectId(body.poule)}, {$push: {races: newRace}});
-            res.status(200).json({message: "Succesfully created a new prediction for the poule" , data: updatedPoule.races, success: true});
+            res.status(201).json({message: "Succesfully created a new prediction for the poule" , data: updatedPoule.races, success: true});
         }
         catch (err){
             res.status(500).json({message: err.message, at: "Adding new prediction to poule"})
