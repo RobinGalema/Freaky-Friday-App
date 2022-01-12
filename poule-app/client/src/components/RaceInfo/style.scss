@@ -1,0 +1,18 @@
+button{
+    width: 100%;
+    background: var(--acccent-color-a);
+    font-family: 'Cantarell', sans-serif;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 0px;
+    border: none;
+    font-size: 18px;
+    margin: 25px 0px 5px;
+
+    &.debug-btn{
+        background: none;
+        border: solid 2px var(--acccent-color-a);
+        color: var(--acccent-color-a);
+        margin-top: 10px;
+    }
+}

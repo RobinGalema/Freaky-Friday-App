@@ -16,6 +16,10 @@
             background: rgb(209, 35, 35);
             margin-top: 10px;
         }
+
+        &.close{
+            background: none;
+        }
     }
 }
 
@@ -41,5 +45,53 @@
                 font-size: 18px;
             }
         }
+    }
+}
+
+.form-wrapper{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: var(--third-bg-color);
+    padding: 20px;
+    width: 75%;
+    border-radius: 10px;
+
+    form{
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label{
+        display: block;
+        font-size: 16px;
+    }
+
+    input[type="text"]{
+        background: var(--second-bg-color);
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        border: none;
+        margin-top: 10px;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"]{
+        width: 100%;
+        background: var(--acccent-color-a);
+        font-family: 'Cantarell', sans-serif;
+        color: white;
+        border-radius: 10px;
+        padding: 10px 0px;
+        border: none;
+        font-size: 18px;
+        margin: 5px 0px;
     }
 }

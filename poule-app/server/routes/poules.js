@@ -15,6 +15,21 @@ router.get('/', async (req, res) => {
     }
 })
 
+// Get one by ID
+router.get('/poule?:id', async (req, res) => {
+    let poule;
+    let id =  mongoose.Types.ObjectId(req.query.id);
+
+    try{
+        poule = await Poule.findById(id);
+
+        res.status(200).json({message: "Succes", data: poule});
+    }
+    catch(err){
+        res.status(500).json({message: err.message})
+    }
+})
+
 // Getting all poules of a specific user by id
 router.get('/userpoules?:id', async (req, res) => {
     let poules;
@@ -74,7 +89,7 @@ router.post('/add', async (req, res) => {
             }
 
             try{
-                updatedPoule = await Poule.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.poule)}, {$push: {members: member}});
+                let updatedPoule = await Poule.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.poule)}, {$push: {members: member}});
                 res.status(200).json({message: "succes", data: updatedPoule, succes: true});
             }
             catch(err){

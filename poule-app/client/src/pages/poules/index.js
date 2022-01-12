@@ -1,8 +1,6 @@
 import { useHistory } from "react-router";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import userData from ".././../data/users.json";
-import pouleData from '../../data/poules.json';
 import './style.css';
 import FullButton from "../../components/FullButton";
 import NewPoule from "../../components/NewPoule";

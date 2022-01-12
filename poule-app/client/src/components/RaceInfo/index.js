@@ -11,7 +11,7 @@ class RaceInfo extends React.Component{
 
         this.state = {
             loading: true,
-            apiLoading : true
+            apiLoading : true,
         }
 
         this.pouleId = props.pouleId;
@@ -43,6 +43,8 @@ class RaceInfo extends React.Component{
             <div className="race-info">
                 <h2>Race info</h2>
                 {apiLoading ? <p>Race loading</p> : this.raceDetails(apiData)}
+                <button>Add Prediction</button>
+                <button className="debug-btn">DEBUG - Haal uitslag op</button>
             </div>
         )
     }

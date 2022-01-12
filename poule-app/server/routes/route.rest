@@ -12,6 +12,10 @@ GET http://localhost:3001/api/users/auth/Niek
 
 GET http://localhost:3001/api/poules/userpoules?id=61bb0211d23252eed945a1d7
 
+###
+GET http://localhost:3001/api/poules/poule?id=61bb0465d23252eed945a1da
+
+
 
 ###
 POST http://localhost:3001/api/poules
@@ -28,7 +32,7 @@ Content-Type: application/json
 
 {
     "name": "Jeroen",
-    "poule" : "61c0a9a617bfa90cab27091a"
+    "poule" : "61bb0465d23252eed945a1da"
 }
 
 ###
