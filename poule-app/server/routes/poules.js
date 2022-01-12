@@ -88,8 +88,6 @@ router.post('/add', async (req, res) => {
     catch (err) {
         res.status(500).json({message: err.message, succes: false});
     }
-
-
 })
 
 module.exports = router;

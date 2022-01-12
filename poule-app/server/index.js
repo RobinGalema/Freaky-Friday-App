@@ -34,3 +34,6 @@ app.use('/api/users', usersRouter)
 
 const poulesRouter = require('./routes/poules');
 app.use('/api/poules', poulesRouter)
+
+const predictionRouter = require('./routes/prediction');
+app.use('/api/prediction', predictionRouter);
