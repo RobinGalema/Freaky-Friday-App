@@ -19,6 +19,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+// ADDING NEW PREDICTION OR EDITING AN EXISTING ONE
 router.post('/', async (req, res) => {
     const body = req.body;
 
@@ -35,7 +36,6 @@ router.post('/', async (req, res) => {
         res.status(500).json({message: err.message, at: "Getting poule information"});
     }
     
-    console.log(predictionExists);
     // Do something based on the check
     if (predictionExists){
         // Prediction does already exist, check if user already has a prediction
@@ -43,9 +43,8 @@ router.post('/', async (req, res) => {
         let canSubmit;
 
         try{
+            // Find the correct prediction and check if the user already has a prediction submitted for this race
             let submission = await Prediction.findById(submissionId);
-
-            console.log(submission);
             submission.submissions.find((x) => x.userId.toString() === body.userId) ? canSubmit = false : canSubmit = true;
         }
         catch(err){
@@ -53,13 +52,14 @@ router.post('/', async (req, res) => {
         }
 
         if (canSubmit){
-            // submit the data
+            // Submit the new prediction
             let newSubmission = {
                 userId : body.userId,
                 predictions: body.prediction
             }
 
             try{
+                // Update the prediction with the new submission
                 let prediction = await Prediction.findOneAndUpdate({_id: mongoose.Types.ObjectId(submissionId)}, {$push: {submissions: newSubmission}})
                 res.status(201).json({message: "Succes", data: newSubmission})
             }
