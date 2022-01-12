@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3001/api/prediction/61bb072ed23252eed945a1db
+GET http://localhost:3001/api/prediction/61c2fc9325044a7930e56082
 
 
 ###
@@ -38,7 +38,7 @@ POST http://localhost:3001/api/prediction
 Content-Type: application/json
 
 {
-    "userId": "61bb0211d23252eed945a1d7",
+    "userId": "61bb02c6d23252eed945a1d8",
     "poule": "61bb0465d23252eed945a1da",
     "round": 1,
     "name": "Bahrain Grand Prix",

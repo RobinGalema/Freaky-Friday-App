@@ -38,13 +38,46 @@ router.post('/', async (req, res) => {
     console.log(predictionExists);
     // Do something based on the check
     if (predictionExists){
-        // Prediction does already exist, add to this
-        res.status(200).json({message: 'This race already has a prediction, adding to this'});
+        // Prediction does already exist, check if user already has a prediction
+        const submissionId = poule.races[body.round-1].submission;
+        let canSubmit;
+
+        try{
+            let submission = await Prediction.findById(submissionId);
+
+            console.log(submission);
+            submission.submissions.find((x) => x.userId.toString() === body.userId) ? canSubmit = false : canSubmit = true;
+        }
+        catch(err){
+            res.status(500).json({message: err.message, at: "Getting submission information"});
+        }
+
+        if (canSubmit){
+            // submit the data
+            let newSubmission = {
+                userId : body.userId,
+                predictions: body.prediction
+            }
+
+            try{
+                let prediction = await Prediction.findOneAndUpdate({_id: mongoose.Types.ObjectId(submissionId)}, {$push: {submissions: newSubmission}})
+                res.status(201).json({message: "Succes", data: newSubmission})
+            }
+            catch(err){
+                res.status(500).json({message: err.message, at: "Adding prediction to submission"});
+            }
+        }
+        else{
+            // user has already submitted
+            res.status(409).json({message: "This user already has a prediction"})
+        }
     }
     else{
         // Prediction does not exist, make a new one
+        const newId = mongoose.Types.ObjectId()
+
         newPrediction = new Prediction({
-            _id: mongoose.Types.ObjectId(),
+            _id: newId,
             submissions : [{
                 userId : body.userId,
                 predictions: body.prediction
@@ -61,17 +94,21 @@ router.post('/', async (req, res) => {
             res.status(500).json({message: err.message, at: "Creating a new prediction"});
         }
 
+        console.log(newId);
+
         // Create a new race object on the poule
         let newRace = {
             round: body.round,
             name: body.name,
-            prediction: prediction._id.toString()
+            submission: newId
         }
+
+        console.log(newRace.prediction);
 
         // Add the prediction as a new race to the array of races
         try {
             const updatedPoule = await Poule.findOneAndUpdate({_id: mongoose.Types.ObjectId(body.poule)}, {$push: {races: newRace}});
-            res.status(201).json({message: "Succesfully created a new prediction for the poule" , data: updatedPoule.races, success: true});
+            res.status(201).json({message: "Succesfully created a new prediction for the poule" , data: updatedPoule, success: true});
         }
         catch (err){
             res.status(500).json({message: err.message, at: "Adding new prediction to poule"})
